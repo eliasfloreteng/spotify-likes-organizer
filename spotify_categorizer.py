@@ -6,7 +6,6 @@ from spotipy.oauth2 import SpotifyOAuth
 import openai
 from tqdm import tqdm
 import logging
-from datetime import datetime
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -142,18 +141,6 @@ def load_existing_categories():
 
 def save_categories(categories):
     """Save song categorizations to file."""
-    # Create a timestamped backup of the existing file if it exists
-    if os.path.exists(SONG_CATEGORIES_FILE):
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        backup_file = f"{SONG_CATEGORIES_FILE}.{timestamp}.bak"
-        try:
-            with open(SONG_CATEGORIES_FILE, "r", encoding="utf-8") as src:
-                with open(backup_file, "w", encoding="utf-8") as dst:
-                    dst.write(src.read())
-            logger.info(f"Created backup of categories file: {backup_file}")
-        except Exception as e:
-            logger.warning(f"Failed to create backup: {e}")
-
     # Save the updated categories
     with open(SONG_CATEGORIES_FILE, "w", encoding="utf-8") as f:
         json.dump(categories, f, indent=2)
