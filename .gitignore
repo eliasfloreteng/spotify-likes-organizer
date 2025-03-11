@@ -177,6 +177,6 @@ pyrightconfig.json
 
 
 spotify_liked_songs.json
-song_categories.json
+song_categories.json*
 categorization_summary.json
 checkpoint_chunk_*.json

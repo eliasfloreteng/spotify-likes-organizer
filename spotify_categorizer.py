@@ -168,7 +168,7 @@ def categorize_songs_with_llm(songs_batch, existing_categories=None):
     # Format the songs for the prompt
     songs_text = "\n".join(
         [
-            f"{i+1}. '{song['name']}' by {song['artist']} (Album: {song['album']})"
+            f"{i + 1}. '{song['name']}' by {song['artist']} (Album: {song['album']})"
             for i, song in enumerate(songs_batch)
         ]
     )
@@ -236,7 +236,7 @@ Songs to categorize:
                 )
                 time.sleep(RETRY_DELAY)
         except Exception as e:
-            logger.error(f"Error in LLM call: {e}. Attempt {attempt+1}/{MAX_RETRIES}")
+            logger.error(f"Error in LLM call: {e}. Attempt {attempt + 1}/{MAX_RETRIES}")
             time.sleep(RETRY_DELAY)
 
     # If all retries fail, return a default category
